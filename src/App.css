@@ -1,38 +1,118 @@
-.App {
+* {
+  list-style: none;
+}
+
+:root {
+  --primary-color: rgb(221, 5, 5);
+  --secondary-color: rgb(12, 150, 171);
+  --default-color: rgb(255, 249, 249);
+  --back-color: rgb(183, 178, 178);
+  --black-color: rgb(24, 23, 23);
+}
+.header {
+  height: 10vh;
+  background-color: var(--secondary-color);
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 18px;
+  color: var(--white);
+  margin-left: 10px;
+}
+
+.app {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 50vh;
+  margin: auto;
+  gap: 10px;
+  padding: 5px 10px;
+  box-shadow: 0 3px 6px 2px;
+  border-radius: 5px;
+  background-color: var(--default-color);
+}
+
+.app form input {
+  padding: 5px 10px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 4px;
+  font-size: large;
+}
+.app form input[type="text"] {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.app form input[type="text"]:focus {
+  border: none;
+}
+.submit {
+  font-weight: 800;
+}
+
+.inp-text {
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  position: relative;
+}
+.error {
+  position: absolute;
+  left: 11%;
+  top: 80%;
+  color: var(--primary-color);
+}
+.first-inp {
+  margin-top: 50px;
+}
+
+.ul-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.ul-list p {
+  font-weight: 400;
+  font-size: 30px;
+  color: var(--primary-color);
+  padding: 20px;
+  background-color: var(--default-color);
+  box-shadow: 0 5px 8px 4px;
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 240px;
+}
+.list {
+  position: relative;
+}
+.reset-click {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: aqua;
   color: white;
+  padding: 4px;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: xx;
+  border-radius: 5px;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes xx {
   from {
-    transform: rotate(0deg);
+    background-color: red;
   }
   to {
-    transform: rotate(360deg);
+    background-color: black;
   }
 }
