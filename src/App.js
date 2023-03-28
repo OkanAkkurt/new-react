@@ -1,52 +1,59 @@
 import { useState } from "react";
 import "./App.css";
+import Header from "./components/shared/Header";
+import Form from "./components/shared/Form";
+
+import CarList from "./components/shared/CarList";
 
 function App() {
-  const [brand, setBrand] = useState("");
-  const [name, setName] = useState("");
-  const [year, setYear] = useState("");
+  // const [brand, setBrand] = useState("");
+  // const [name, setName] = useState("");
+  // const [year, setYear] = useState("");
+  const [car, setCar] = useState({
+    brand: "",
+    name: "",
+    year: "",
+  });
+  const [error, setError] = useState({
+    brand: true,
+    name: true,
+    year: true,
+  });
 
-  const [err1, setError1] = useState(false);
-  const [err2, setError2] = useState(false);
-  const [err3, setError3] = useState(false);
+  // const [err1, setError1] = useState(false);
+  // const [err2, setError2] = useState(false);
+  // const [err3, setError3] = useState(false);
 
   const [entries, setEntries] = useState([]);
 
   const handleCar = (event) => {
     event.preventDefault();
-    setError1(false);
-    setError2(false);
-    setError3(false);
-    if (brand && name && year) {
+    setError({ ...car });
+
+    if (!Object.values(car).some((value) => !value)) {
       setEntries([
         ...entries,
 
         {
-          id: `${Date.now()}${Math.floor(Math.random() * 100)}`,
-          brand,
-          name,
-          year,
+          id: `${Date.now()}${Math.floor(Math.random() * 1000)}`,
+          ...car,
         },
       ]);
-      setBrand("");
-      setName("");
-      setYear("");
-    } else {
-      !brand && setError1(true);
-      !name && setError2(true);
-      !year && setError3(true);
+      setCar({ brand: "", name: "", year: "" });
     }
   };
+
   const handleDeleteCar = (id) => {
     setEntries((prevEntries) => prevEntries.filter((car) => car.id !== id));
   };
 
   return (
     <div className="app">
-      <header className="header">
-        <h1 className="text-center">Create New Car</h1>
-      </header>
-      <form className="form">
+      <Header inpLogo={"#Logo"} listItem={["Home", "About", "Contact"]} />
+      <Form car={car} setCar={setCar} handleCar={handleCar} error={error} />
+      <CarList entries={entries} handleDeleteCar={handleDeleteCar} />
+
+      {/* <form className="form">
         <div className="inp-text first-inp">
           <input
             className="brand"
@@ -85,8 +92,8 @@ function App() {
             onClick={handleCar}
           />
         </div>
-      </form>
-
+      </form> */}
+      {/* 
       <div className="ul-list">
         {entries.length !== 0 &&
           entries.map((entries) => (
@@ -108,7 +115,7 @@ function App() {
               </ul>
             </div>
           ))}
-      </div>
+      </div> */}
     </div>
   );
 }
