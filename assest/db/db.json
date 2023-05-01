@@ -1,0 +1,29 @@
+{
+    "cars": [
+        {
+            "id": "0001",
+            "brand": "BMW",
+            "name": "320D",
+            "year": 2012
+            
+        },
+        {
+            "id": "0002",
+            "brand": "Mercedes",
+            "name": "AMG",
+            "year": 2019
+            
+        },
+        {
+            "id": "0003",
+            "brand": "WW",
+            "name": "Golf",
+            "year": 2020
+            
+        }
+    
+    
+    ]
+
+    
+}

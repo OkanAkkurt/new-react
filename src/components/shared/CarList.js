@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import CarCards from "./CarCards";
+import { CarContext } from "../../context/car-context/CarContext";
 
-const CarList = ({ entries, handleDeleteCar }) => {
+const CarList = () => {
+  const { entries, isEntriesLoading } = useContext(CarContext);
+
   return (
     <div className="ul-list">
-      {entries.length !== 0 &&
-        entries.map((entry) => (
-          <CarCards
-            key={entry.id}
-            entry={entry}
-            handleDeleteCar={handleDeleteCar}
-          />
-        ))}
+      {isEntriesLoading ? (
+        <p>Loading...</p>
+      ) : (
+        entries.length !== 0 &&
+        entries.map((entry) => <CarCards key={entry.id} entry={entry} />)
+      )}
     </div>
   );
 };

@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { CarContext } from "../../../context/car-context/CarContext";
 
-const Form = ({ car, setCar, handleCar, error }) => {
+const Form = () => {
+  const { createCar } = useContext(CarContext);
+  const [car, setCar] = useState({
+    brand: "",
+    name: "",
+    year: "",
+  });
+  const [error, setError] = useState({
+    brand: true,
+    name: true,
+    year: true,
+  });
+  const setCarHandle = (newCar) => {
+    setCar((prevCar) => ({ ...prevCar, ...newCar }));
+  };
+  const handleCar = (event) => {
+    event.preventDefault();
+    setError({ ...car });
+    if (!Object.values(car).some((value) => !value)) {
+      createCar(car);
+      setCar({ brand: "", name: "", year: "" });
+    }
+  };
   return (
     <form className="form">
       <div className="inp-text first-inp">
@@ -8,7 +31,7 @@ const Form = ({ car, setCar, handleCar, error }) => {
           className="brand"
           type="text"
           placeholder="Enter Car Brand"
-          onChange={(event) => setCar({ ...car, brand: event.target.value })}
+          onChange={(event) => setCarHandle({ brand: event.target.value })}
           value={car.brand}
         />
         {!error.brand && (
@@ -20,7 +43,7 @@ const Form = ({ car, setCar, handleCar, error }) => {
           className="name"
           type="text"
           placeholder="Enter Car Name"
-          onChange={(event) => setCar({ ...car, name: event.target.value })}
+          onChange={(event) => setCarHandle({ name: event.target.value })}
           value={car.name}
         />
         {!error.name && (
@@ -32,7 +55,7 @@ const Form = ({ car, setCar, handleCar, error }) => {
           className="year"
           type="text"
           placeholder="Enter Year"
-          onChange={(event) => setCar({ ...car, year: event.target.value })}
+          onChange={(event) => setCarHandle({ year: event.target.value })}
           value={car.year}
         />
         {!error.year && (

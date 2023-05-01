@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CarContext } from "../../context/car-context/CarContext";
 
-const CarCards = ({ entry, handleDeleteCar }) => {
+const CarCards = ({ entry }) => {
+  const { handleDeleteCar } = useContext(CarContext);
   return (
     <div>
       <ul>
